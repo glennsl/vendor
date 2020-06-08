@@ -12,7 +12,17 @@
       [
         "bash",
         "-c",
-        "#{os == 'windows' ? './openssl/configure mingw64 --prefix=$cur__install --openssldir=$cur__install/ssl --cross-compile-prefix=x86_64-w64-mingw32-' : './openssl/config --prefix=$cur__install --openssldir=$cur__install/ssl'}"
+        "#{os == 'windows' ? './openssl/configure mingw64 --prefix=$cur__install --openssldir=$cur__install/ssl --cross-compile-prefix=x86_64-w64-mingw32-' : 'echo'}"
+      ],
+      [
+        "bash",
+        "-c",
+        "#{os == 'darwin' ? './openssl/config -static --prefix=$cur__install --openssldir=$cur__install/ssl' : 'echo'}"
+      ],
+      [
+        "bash",
+        "-c",
+        "#{os == 'linux' ? './openssl/config --prefix=$cur__install --openssldir=$cur__install/ssl' : 'echo'}"
       ],
       [
         "make",
